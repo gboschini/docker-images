@@ -2,6 +2,7 @@
 FROM ubuntu:trusty
 MAINTAINER Ervin Varga <ervin.varga@gmail.com>
 
+ENV DOCKER_COMPOSE_VERSION 1.14.0
 # In case you need proxy
 #RUN echo 'Acquire::http::Proxy "http://127.0.0.1:8080";' >> /etc/apt/apt.conf
 
@@ -32,6 +33,10 @@ RUN apt-get -q update &&\
 # Set user jenkins to the image
 RUN useradd -m -d /home/jenkins -s /bin/sh jenkins &&\
     echo "jenkins:jenkins" | chpasswd
+
+# Install Docker Compose
+RUN curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
 
 # Standard SSH port
 EXPOSE 22

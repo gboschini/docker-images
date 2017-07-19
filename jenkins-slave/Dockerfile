@@ -1,5 +1,5 @@
 # This Dockerfile is used to build an image containing basic stuff to be used as a Jenkins slave build node.
-FROM ubuntu:trusty
+FROM ubuntu:16.04
 MAINTAINER Ervin Varga <ervin.varga@gmail.com>
 
 ENV DOCKER_COMPOSE_VERSION 1.14.0
